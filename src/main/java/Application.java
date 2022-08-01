@@ -27,7 +27,10 @@ public class Application {
 
         Dataset<Row> groupedData = stringDataset.groupBy("value").count();
 
-        StreamingQuery start = groupedData.writeStream().outputMode("complete").format("console").start();
+        //StreamingQuery start = groupedData.writeStream().outputMode("complete").format("console").start();
+
+        //2.1.1 version
+        StreamingQuery start = groupedData.writeStream().outputMode("update").format("console").start();
         start.awaitTermination();
 
     }
